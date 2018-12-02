@@ -103,7 +103,7 @@ abstract class FlexibleListItemBase extends FieldItemBase implements OptionsProv
    * {@inheritdoc}
    */
   public static function generateSampleValue(FieldDefinitionInterface $field_definition) {
-    flexible_list_allowed_values($this->getFieldDefinition());
+    flexible_list_allowed_values($field_definition);
     $values['value'] = array_rand($allowed_options);
     return $values;
   }
