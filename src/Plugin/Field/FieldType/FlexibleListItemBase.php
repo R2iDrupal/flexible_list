@@ -202,6 +202,12 @@ abstract class FlexibleListItemBase extends FieldItemBase implements OptionsProv
    * @see \Drupal\Core\Render\Element\FormElement::processPattern()
    */
   public static function validateAllowedValues($element, FormStateInterface $form_state) {
+    // If the element is empty, skip any further processing.
+    if (empty($element['#value'])) {
+      $form_state->setValueForElement($element, []);
+      return;
+    }
+
     $values = static::extractAllowedValues($element['#value'], $element['#field_has_data']);
 
     if (!is_array($values)) {
